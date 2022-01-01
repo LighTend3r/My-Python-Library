@@ -1,5 +1,6 @@
 import math
 from functools import total_ordering
+import copy
 def find_more_len(pile):
     more_len = 0
     for p in pile:
@@ -72,6 +73,9 @@ class Pile:
         else:
             return self.remove()
 
+    def __copy__(self):
+        return Pile(copy.copy(self.pile))
+
     def push(self, elt):
         if elt is None or type(elt) in [int, float, str]:
             self.pile.insert(0, elt)
@@ -114,8 +118,9 @@ def simple_verify_exp(expression, caractere_start, caractere_end):
 
 if __name__ == "__main__":
     p = Pile()
-    print(len(p))
 
+    p2 = copy.copy(p)
+    p2.push(1)
 
 
     # exp = "((()())"
